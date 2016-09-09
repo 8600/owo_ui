@@ -26,3 +26,45 @@
         }
         else console.error("owo_ui [sizeTransition:"+"参数1 不是一个可操作的DOM对象并且取不到id为 参数1 的元素!]");
     }
+	//                     
+    //－－－－－－－－－－－－－－－－－－－－－－
+    // [参数]           target         grayscale
+    // [含义]           目标元素         灰度
+    // [重要性]           必填           必填
+    // [默认值]            无            100%
+    // [类型 or 单位]  字符串 or DOM    1%-100%
+    //－－－－－－－－－－－－－－－－－－－－－－
+	function grayscale(target,grayscale){
+        grayscale=changeResult||"100%";
+        if(typeof target === "string") target=document.getElementById(target);
+		target.style.cssText="filter: grayscale("+grayscale+");-webkit-filter: grayscale("+grayscale+");-moz-filter: grayscale("+grayscale+");-o-filter: grayscale("+grayscale+");-ms-filter: grayscale("+grayscale+");";
+	}
+	
+		//                     
+    //－－－－－－－－－－－－－－－－－－－－－－
+    // [参数]           target         grayscale
+    // [含义]           目标元素         灰度
+    // [重要性]           必填           必填
+    // [默认值]            无            100%
+    // [类型 or 单位]  字符串 or DOM    1%-100%
+    //－－－－－－－－－－－－－－－－－－－－－－
+	function grayscale(target,grayscale){
+        grayscale=changeResult||"100%";
+        if(typeof target === "string") target=document.getElementById(target);
+		target.style.cssText="filter: grayscale("+grayscale+");-webkit-filter: grayscale("+grayscale+");-moz-filter: grayscale("+grayscale+");-o-filter: grayscale("+grayscale+");-ms-filter: grayscale("+grayscale+");";
+	}
+	
+		//                     
+    //－－－－－－－－－－－－－－－－－－－－－－
+    // [参数]           target         grayscale
+    // [含义]           目标元素        模糊值
+    // [重要性]           必填           必填
+    // [默认值]            无            5px
+    // [类型 or 单位]  字符串 or DOM     像素
+    //－－－－－－－－－－－－－－－－－－－－－－
+	function blur(target,grayscale){
+        grayscale=changeResult||"5px";
+        if(typeof target === "string") target=document.getElementById(target);
+		target.style.cssText="filter: blur("+grayscale+");-webkit-filter: blur("+grayscale+");-moz-filter: blur("+grayscale+");-o-filter: blur("+grayscale+");-ms-filter: blur("+grayscale+");";
+	}
+	
