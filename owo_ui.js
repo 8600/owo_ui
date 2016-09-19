@@ -69,7 +69,6 @@ function shake(target,oncomplete,distance,time) {
             target.style.cssText = originalStyle;
             if (oncomplete) oncomplete();
         }
-<<<<<<< HEAD
     }
     if(typeof e === "string") target =document.getElementById(target);
     if(!time) time = 500;
@@ -78,28 +77,3 @@ function shake(target,oncomplete,distance,time) {
     animate();
 
 }
-=======
-        else console.error("owo_ui [sizeTransition:"+"参数1 不是一个可操作的DOM对象并且取不到id为 参数1 的元素!]");
-    }
-	//                     给图片加上特效     
-    //－－－－－－－－－－－－－－－－－－－－－－－－－－－－
-    // [参数]           target         attribute    value
-    // [含义]           目标元素         特效        值
-    // [重要性]           必填           必填       必填
-    // [默认值]            无            无          无
-    // [类型 or 单位]  字符串 or DOM    字符串      字符串
-    //－－－－－－－－－－－－－－－－－－－－－－－－－－－－
-	
-	//－－－－－－－－－－－attribute－－－－－－－－－－－－
-	//  [种类]      grayscale        blur      saturate       sepia       hue-rotate    invert   brightness  contrast
-	//  [含义]        灰度           模糊       饱和度        老化         色相旋转    底片效果    高亮        均衡
-	// [接受值]  0-1 or 1%-100%    0px-100px   0%-1000%   0-1 or 1%-100%  0deg-360deg    0-1      0%-1000%      0-1
-	function pictureEffects(target,attribute,value){
-        if(typeof target === "string") {target=document.getElementById(target);}
-		if(target.tagName!=="IMG"){console.log("你输入的"+target+"不是图片元素哦!");return;}
-		target.style.cssText="filter: "+attribute+"("+value+");-webkit-filter: "+attribute+"("+value+");-moz-filter: "+attribute+"("+value+");-o-filter: "+attribute+"("+value+");-ms-filter: "+attribute+"("+value+");";
-	}
-	
-
-	
->>>>>>> 5084b3644da2f695bc11c2bfc53f49c571e3fb5c
