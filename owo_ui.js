@@ -70,10 +70,37 @@ function shake(target,oncomplete,distance,time) {
             if (oncomplete) oncomplete();
         }
     }
-    if(typeof e === "string") target =document.getElementById(target);
+    if(typeof target === "string") target =document.getElementById(target);
     if(!time) time = 500;
     if(!distance) distance = 5;
     target.style.position = "relative";
     animate();
 
+}
+//                          让一个元素逐渐消失    
+//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+// [参数]           target         oncomplete      time
+// [含义]           目标元素           回调         持续时间   
+// [重要性]           必填             必填          可选
+// [默认值]            无              无            500
+// [类型 or 单位]  字符串 or DOM       函数           毫秒
+//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+function fadeOut(target,oncomplete,time){
+    if(typeof target === "string") target = document.getElementById(target);
+    if(!time) time = 500;
+    var start = (new Date()).getTime();
+    function animate(){
+        var elapsed = (new Date()).getTime()-start;
+        var fraction = elapsed/time;
+        if(fraction < 1){
+            var opacity = 1 - Math.sqrt(fraction);
+            target.style.opacity = String(opacity);
+            setTimeout(animate,Math.min(25,time-elapsed));
+        }
+        else{
+            target.style.opacity ="0";
+            if(oncomplete) oncomplete(target);
+        }
+    }
+    animate();
 }
