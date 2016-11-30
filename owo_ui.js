@@ -77,30 +77,27 @@ function shake(target,oncomplete,distance,time) {
     animate();
 
 }
-//                          让一个元素逐渐消失    
-//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
-// [参数]           target         oncomplete      time
-// [含义]           目标元素           回调         持续时间   
-// [重要性]           必填             必填          可选
-// [默认值]            无              无            500
-// [类型 or 单位]  字符串 or DOM       函数           毫秒
-//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
-function fadeOut(target,oncomplete,time){
-    if(typeof target === "string") target = document.getElementById(target);
-    if(!time) time = 500;
-    var start = (new Date()).getTime();
-    function animate(){
-        var elapsed = (new Date()).getTime()-start;
-        var fraction = elapsed/time;
-        if(fraction < 1){
-            var opacity = 1 - Math.sqrt(fraction);
-            target.style.opacity = String(opacity);
-            setTimeout(animate,Math.min(25,time-elapsed));
-        }
+
+
+const owo_ui={
+    G:function(str){
+        if(typeof str==="object"){return str;}
         else{
-            target.style.opacity ="0";
-            if(oncomplete) oncomplete(target);
+            switch(str[0]){
+                case ".":const a =document.getElementsByClassName(str.slice(1));if(a.length>0){return a;}else{console.error("找不到class为"+str.slice(1)+"的元素！     ——owo_ui");}break;
+                case "#":const b =document.getElementById(str.slice(1));if(b){return b;}else{console.error("找不到id为"+str.slice(1)+"的元素！     ——owo_ui");}break;
+                default :const c =document.getElementsByTagName(str);if(c.length>0){return c;}else{console.error("找不到标签为"+str.slice(1)+"的元素！     ——owo_ui");}break;
+            }
         }
-    }
-    animate();
+    },
+    //-------------------------让一个元素逐渐消失-------------------------
+    //参数1.    欲操作元素的元素标识  参数2.完成的会掉  参数3.持续时间(500)
+    //实例下载：http://xn--9tr.com/demo/puge/fadeOut.html
+    fadeOut:function (target,oncomplete,time){target = G(target);if(!time) time = 500;const start = (new Date()).getTime();function animate(){const elapsed = (new Date()).getTime()-start;const fraction = elapsed/time;if(fraction < 1){const opacity = 1 - Math.sqrt(fraction);target.style.opacity = String(opacity);setTimeout(animate,Math.min(25,time-elapsed));}else{target.style.opacity ="0";if(oncomplete) oncomplete(target);}}animate();},
+    //-------------------------给一个元素添加水波纹特效-------------------------
+    //参数1.    欲操作元素的class  参数2.水波纹的颜色  参数3.水波扩散速度
+    //注意：    元素的css：canvas {opacity: 0.25;position: absolute;width :100%;height :100%;top: 0;left: 0;}  上层元素css：div{position: relative;}
+    //实例下载：http://xn--9tr.com/demo/puge/waterRipple.html
+    waterRipple:function (dom,color,increment) {let centerX = 0, centerY = 0, context = {}, element = {}, radius = 0;const requestAnimFrame = function () {return (window.requestAnimationFrame       ||window.mozRequestAnimationFrame    ||window.oRequestAnimationFrame      ||window.msRequestAnimationFrame ||function (callback) {window.setTimeout(callback, 1000 / 60);});} ();const draw = function () {context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);context.fillStyle = color;context.fill();radius += increment ;if (radius < element.width) {requestAnimFrame(draw);}};const press = function (event) {element = event.toElement;context = element.getContext('2d');radius = 0;centerX = event.offsetX;centerY = event.offsetY;context.clearRect(0, 0, element.width, element.height);context.beginPath();draw();};const containers = Array.prototype.slice.call(document.getElementsByClassName(dom));for (var i = 0; i < containers.length; i += 1) {let canvas = document.createElement('canvas');canvas.addEventListener('click', press, false);containers[i].appendChild(canvas);canvas.width  = canvas.offsetWidth;canvas.height = canvas.offsetHeight;}}
+
 }
